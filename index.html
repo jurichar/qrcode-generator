@@ -7,33 +7,60 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
   <title>Frontend Mentor | QR code component</title>
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  
+  <script type="text/javascript">
+    function generateQRCode() {
+      let website = document.getElementById("website").value;
+      if (website) {
+        let qrcodeContainer = document.getElementById("qrcode");
+        qrcodeContainer.innerHTML = "";
+        new QRCode(qrcodeContainer, {
+          text: website,
+          display: "inline-block",
+          colorDark: "#ffffff",
+          colorLight: "#0077ff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      } else {
+        alert("Please enter a valid URL");
+      }
+    }
+  </script>
 </head>
 
 <body>
   <div class="main">
     <div class="box">
-      <div class="image">
-        <img class="" src="./images/image-qr-code.png" alt="QR code">
+      <div class="form">
+        <form>
+          <input class="input" type="url" id="website" name="website" placeholder="You URL" required />
+          <button class="button" type="button" onclick="generateQRCode()">
+            Generate QR Code
+          </button>
+        </form>
+      </div>
+      <div class="qrcode-container">
+        <div id="qrcode" class="qrcode"></div>
       </div>
       <div class="text_box">
         <div class="title">
           Improve your front-end skills by building projects
         </div>
         <div class="content">
-          Scan the QR code to visit Frontend Mentor and take your coding skills to the next level
+          Generate QR Code for your website
+          <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
         </div>
       </div>
     </div>
-    <!-- <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    <div class="attribution">
+      <!-- Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.  -->
       Coded by <a href="#">jurichar</a>.
-    </div> -->
+    </div>
   </div>
 </body>
 
