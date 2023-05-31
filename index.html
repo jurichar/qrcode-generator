@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
@@ -18,13 +18,20 @@
       if (website) {
         let qrcodeContainer = document.getElementById("qrcode");
         qrcodeContainer.innerHTML = "";
-        new QRCode(qrcodeContainer, {
+        let qrcode = new QRCode(qrcodeContainer, {
           text: website,
-          display: "inline-block",
           colorDark: "#ffffff",
           colorLight: "#0077ff",
           correctLevel: QRCode.CorrectLevel.H
         });
+
+        // Create download link when QR code is generated
+        setTimeout(() => {
+          let canvas = qrcodeContainer.querySelector('canvas');
+          let imgData = canvas.toDataURL("image/png");
+          let link = document.getElementById("download");
+          link.href = imgData;
+        }, 500);
       } else {
         alert("Please enter a valid URL");
       }
@@ -46,6 +53,7 @@
       <div class="qrcode-container">
         <div id="qrcode" class="qrcode"></div>
       </div>
+      <a id="download" href="" download="qrcode.png">Download QR Code</a>
       <div class="text_box">
         <div class="title">
           Improve your front-end skills by building projects
@@ -58,7 +66,6 @@
       </div>
     </div>
     <div class="attribution">
-      <!-- Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.  -->
       Coded by <a href="#">jurichar</a>.
     </div>
   </div>
