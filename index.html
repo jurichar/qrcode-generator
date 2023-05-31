@@ -15,8 +15,9 @@
   <script type="text/javascript">
     function generateQRCode() {
       let website = document.getElementById("website").value;
+      let downloadLink = document.getElementById("download");
+      let qrcodeContainer = document.getElementById("qrcode");
       if (website) {
-        let qrcodeContainer = document.getElementById("qrcode");
         qrcodeContainer.innerHTML = "";
         let qrcode = new QRCode(qrcodeContainer, {
           text: website,
@@ -29,14 +30,17 @@
         setTimeout(() => {
           let canvas = qrcodeContainer.querySelector('canvas');
           let imgData = canvas.toDataURL("image/png");
-          let link = document.getElementById("download");
-          link.href = imgData;
+          downloadLink.href = imgData;
+          downloadLink.classList.remove("hide");  // Show the download link
+          qrcodeContainer.classList.remove("no-padding"); // Add padding to the QR Code container
         }, 500);
       } else {
         alert("Please enter a valid URL");
+        downloadLink.classList.add("hide");  // Hide the download link
+        qrcodeContainer.classList.add("no-padding"); // Remove padding from the QR Code container
       }
     }
-  </script>
+</script>
 </head>
 
 <body>
@@ -50,10 +54,10 @@
           </button>
         </form>
       </div>
-      <div class="qrcode-container">
+      <div class="qrcode-container no-padding">
         <div id="qrcode" class="qrcode"></div>
-      </div>
-      <a id="download" href="" download="qrcode.png">Download QR Code</a>
+    </div>
+    <a id="download" class="hide" href="" download="qrcode.png">Download QR Code</a>    
       <div class="text_box">
         <div class="title">
           Improve your front-end skills by building projects
