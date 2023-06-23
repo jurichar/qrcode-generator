@@ -32,7 +32,7 @@ Vous pouvez maintenant utiliser ce code QR comme vous le souhaitez.
 
 ## Déploiement
 
-Le projet est actuellement déployé [ici(https://qrcode-generator-livid.vercel.app/)].
+Le projet est actuellement déployé [ici](https://qrcode-generator-livid.vercel.app/).
 
 Vous pouvez visiter le site pour essayer le générateur de QR Code
 
